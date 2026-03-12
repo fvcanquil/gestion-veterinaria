@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Gestión Veterinaria - Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="|Bienvenido a ${name}!|"></h1>
+
+        <!-- Contenido visible solo para usuarios autenticados -->
+        <div sec:authorize="isAuthenticated()">
+            <h2>Usuario conectado: <span sec:authentication="name"></span></h2>
+            <p>Seguridad implementada con Spring Security</p>
+            
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn-logout">Cerrar Sesión</button>
+            </form>
+        </div>
+
+        <!-- Contenido visible solo para usuarios NO autenticados -->
+        <div sec:authorize="!isAuthenticated()">
+            <p>Por favor <a th:href="@{/login}">inicia sesión</a> para continuar.</p>
+        </div>
+    </div>
+</body>
+</html>
