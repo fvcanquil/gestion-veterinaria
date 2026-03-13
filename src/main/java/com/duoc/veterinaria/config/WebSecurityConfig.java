@@ -48,6 +48,7 @@ public class WebSecurityConfig {
     /**
      * USUARIOS EN MEMORIA - 3 usuarios con roles distintos.
      */
+    
     @Bean
     @Description("In memory Userdetails service registered since DB doesn't have user table ")
     public UserDetailsService users() {
