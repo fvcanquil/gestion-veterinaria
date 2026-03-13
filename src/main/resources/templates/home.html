@@ -14,6 +14,11 @@
         <div sec:authorize="isAuthenticated()">
             <h2>Usuario conectado: <span sec:authentication="name"></span></h2>
             <p>Seguridad implementada con Spring Security</p>
+
+            <!-- Solo el ADMIN ve este enlace anidado aquí -->
+            <div sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/admin}">Ir al Panel de Administración</a>
+            </div>
             
             <form th:action="@{/logout}" method="post">
                 <button type="submit" class="btn-logout">Cerrar Sesión</button>
@@ -24,6 +29,7 @@
         <div sec:authorize="!isAuthenticated()">
             <p>Por favor <a th:href="@{/login}">inicia sesión</a> para continuar.</p>
         </div>
+
     </div>
 </body>
 </html>
