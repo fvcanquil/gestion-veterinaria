@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Pacientes - Gestión Veterinaria</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container" style="max-width:800px;">
+    <h1>🐾 Pacientes Registrados</h1>
+    <p>Usuario: <strong sec:authentication="name"></strong></p>
+
+    <a th:href="@{/pacientes/nuevo}" class="btn-login" 
+       style="display:inline-block;width:auto;padding:10px 20px;margin-bottom:20px;">
+        + Registrar Nuevo Paciente
+    </a>
+    <a th:href="@{/home}" style="margin-left:15px;">← Volver al Inicio</a>
+
+    <table style="width:100%;border-collapse:collapse;margin-top:20px;">
+        <thead>
+            <tr style="background:#667eea;color:white;">
+                <th style="padding:10px;">ID</th>
+                <th style="padding:10px;">Nombre</th>
+                <th style="padding:10px;">Especie</th>
+                <th style="padding:10px;">Raza</th>
+                <th style="padding:10px;">Edad</th>
+                <th style="padding:10px;">Dueño</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="paciente : ${pacientes}" style="border-bottom:1px solid #ddd;">
+                <td style="padding:10px;text-align:center;" th:text="${paciente.id}"></td>
+                <td style="padding:10px;" th:text="${paciente.nombre}"></td>
+                <td style="padding:10px;" th:text="${paciente.especie}"></td>
+                <td style="padding:10px;" th:text="${paciente.raza}"></td>
+                <td style="padding:10px;text-align:center;" th:text="${paciente.edad}"></td>
+                <td style="padding:10px;" th:text="${paciente.dueno}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
