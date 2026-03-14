@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Citas - Gestión Veterinaria</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container" style="max-width:900px;">
+    <h1>🗓️ Citas Agendadas</h1>
+    <p>Usuario: <strong sec:authentication="name"></strong></p>
+
+    <a th:href="@{/citas/nueva}" class="btn-login"
+       style="display:inline-block;width:auto;padding:10px 20px;margin-bottom:20px;">
+        + Agendar Nueva Cita
+    </a>
+    <a th:href="@{/home}" style="margin-left:15px;">← Volver al Inicio</a>
+
+    <table style="width:100%;border-collapse:collapse;margin-top:20px;">
+        <thead>
+            <tr style="background:#667eea;color:white;">
+                <th style="padding:10px;">ID</th>
+                <th style="padding:10px;">Paciente</th>
+                <th style="padding:10px;">Fecha y Hora</th>
+                <th style="padding:10px;">Motivo</th>
+                <th style="padding:10px;">Veterinario</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cita : ${citas}" style="border-bottom:1px solid #ddd;">
+                <td style="padding:10px;text-align:center;" th:text="${cita.id}"></td>
+                <td style="padding:10px;" th:text="${cita.nombrePaciente}"></td>
+                <td style="padding:10px;" th:text="${cita.fechaHora}"></td>
+                <td style="padding:10px;" th:text="${cita.motivo}"></td>
+                <td style="padding:10px;" th:text="${cita.veterinario}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
